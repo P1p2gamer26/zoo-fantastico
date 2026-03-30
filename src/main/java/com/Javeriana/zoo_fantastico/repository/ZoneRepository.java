@@ -1,5 +1,9 @@
 package com.Javeriana.zoo_fantastico.repository;
 
-public interface ZoneRepository {
-    // Left empty as requested by the user
+import com.Javeriana.zoo_fantastico.model.Zone;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ZoneRepository extends JpaRepository<Zone, Long> {
 }
