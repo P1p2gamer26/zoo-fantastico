@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZooMinder | Criaturas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="edit-modal" class="modal">
+        <div class="modal-content glass-card">
+            <span class="close-modal">&times;</span>
+            <h3>Editar Criatura</h3>
+            <form id="form-edit" class="modern-form">
+                <input type="hidden" id="edit-id">
+                <input type="text" id="edit-nombre" placeholder="Nombre" required>
+                <input type="text" id="edit-especie" placeholder="Especie" required>
+                <div class="input-group">
+                    <input type="number" step="0.1" id="edit-tamano" placeholder="Tamaño (m)" required>
+                    <input type="number" min="1" max="10" id="edit-peligro" placeholder="Peligro (1-10)" required>
+                </div>
+                <select id="edit-salud" required>
+                    <option value="">-- Estado de Salud --</option>
+                    <option value="Excelente">Excelente</option>
+                    <option value="Estable">Estable</option>
+                    <option value="Crítico">Crítico</option>
+                </select>
+                <select id="edit-zona-id"><option value="">-- Sin Zona --</option></select>
+                <button type="submit" class="btn-primary">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="brand"><span class="logo">🌿</span><h2>ZooMinder</h2></div>
+            <nav>
+                <a href="/" class="nav-link">📊 Dashboard</a>
+                <a href="/zona" class="nav-link">🌍 Zonas</a>
+                <a href="/criatura" class="nav-link active">🐉 Criaturas</a>
+            </nav>
+        </aside>
+        <main class="content">
+            <section class="view active">
+                <header><h1>🐉 Registro de Criaturas</h1></header>
+                <div class="glass-card">
+                    <form id="form-criatura" class="modern-form">
+                        <div class="input-group">
+                            <input type="text" id="c-nombre" placeholder="Nombre" required>
+                            <input type="text" id="c-especie" placeholder="Especie" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="number" step="0.1" id="c-tamano" placeholder="Tamaño (m)" required>
+                            <input type="number" min="1" max="10" id="c-peligro" placeholder="Peligro (1-10)" required>
+                        </div>
+                        <div class="input-group">
+                            <select id="c-salud">
+                                <option value="Excelente">Excelente</option>
+                                <option value="Estable">Estable</option>
+                                <option value="Crítico">Crítico</option>
+                            </select>
+                            <select id="c-zona-id"><option value="">-- Sin Zona --</option></select>
+                        </div>
+                        <button type="submit" class="btn-primary">Registrar Criatura</button>
+                    </form>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Criatura</th><th>Tamaño</th><th>Peligro</th><th>Salud</th><th>Zona</th><th>Acciones</th></tr></thead>
+                            <tbody id="tabla-criaturas"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        const API_C = '/api/creatures';
+        const API_Z = '/api/zonas';
+        async function cargarZonasEnSelect(selectId, zonaSelId = null) {
+            const zs = await (await fetch(API_Z)).json();
+            const sel = document.getElementById(selectId);
+            const base = sel.querySelector('option[value=""]')?.outerHTML || '';
+            sel.innerHTML = base + zs.map(z => `<option value="${z.id}" ${z.id === zonaSelId ? 'selected' : ''}>${z.nombre}</option>`).join('');
+        }
+        async function cargarCriaturas() {
+            try {
+                const cs = await (await fetch(API_C)).json();
+                document.getElementById('tabla-criaturas').innerHTML = cs.map(c => `
+                    <tr>
+                        <td><strong>${c.name}</strong><br><small>${c.species}</small></td>
+                        <td>${c.size}m</td>
+                        <td>${c.dangerLevel}/10</td>
+                        <td><span class="badge">${c.healthStatus}</span></td>
+                        <td>${c.zona ? c.zona.nombre : '<em>Sin zona</em>'}</td>
+                        <td>
+                            <button class="btn-edit" onclick="abrirEditar(${c.id})">✏</button>
+                            <button class="btn-delete" onclick="borrarC(${c.id})">🗑</button>
+                        </td>
+                    </tr>`).join('');
+            } catch (err) { console.error(err); }
+        }
+        document.getElementById('form-criatura').onsubmit = async (e) => {
+            e.preventDefault();
+            const zonaId = document.getElementById('c-zona-id').value;
+            const res = await fetch(API_C, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ name: document.getElementById('c-nombre').value, species: document.getElementById('c-especie').value, size: parseFloat(document.getElementById('c-tamano').value), dangerLevel: parseInt(document.getElementById('c-peligro').value), healthStatus: document.getElementById('c-salud').value, zona: zonaId ? {id: parseInt(zonaId)} : null }) });
+            if (!res.ok) { alert('Error al registrar criatura'); return; }
+            e.target.reset(); await cargarZonasEnSelect('c-zona-id'); cargarCriaturas();
+        };
+        window.abrirEditar = async (id) => {
+            const c = await (await fetch(`${API_C}/${id}`)).json();
+            document.getElementById('edit-id').value = c.id;
+            document.getElementById('edit-nombre').value = c.name;
+            document.getElementById('edit-especie').value = c.species;
+            document.getElementById('edit-tamano').value = c.size;
+            document.getElementById('edit-peligro').value = c.dangerLevel;
+            document.getElementById('edit-salud').value = c.healthStatus;
+            await cargarZonasEnSelect('edit-zona-id', c.zona?.id ?? null);
+            document.getElementById('edit-modal').style.display = 'flex';
+        };
+        document.getElementById('form-edit').onsubmit = async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('edit-id').value;
+            const zonaId = document.getElementById('edit-zona-id').value;
+            const res = await fetch(`${API_C}/${id}`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ name: document.getElementById('edit-nombre').value, species: document.getElementById('edit-especie').value, size: parseFloat(document.getElementById('edit-tamano').value), dangerLevel: parseInt(document.getElementById('edit-peligro').value), healthStatus: document.getElementById('edit-salud').value, zona: zonaId ? {id: parseInt(zonaId)} : null }) });
+            if (!res.ok) { alert('Error al actualizar'); return; }
+            document.getElementById('edit-modal').style.display = 'none'; cargarCriaturas();
+        };
+        window.borrarC = async (id) => {
+            if (!confirm('¿Eliminar esta criatura?')) return;
+            await fetch(`${API_C}/${id}`, {method:'DELETE'}); cargarCriaturas();
+        };
+        document.querySelector('.close-modal').onclick = () => document.getElementById('edit-modal').style.display = 'none';
+        cargarZonasEnSelect('c-zona-id'); cargarCriaturas();
+    </script>
+</body>
+</html>

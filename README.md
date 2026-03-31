@@ -16,8 +16,8 @@ Para ejecutar el proyecto necesitas tener instalado:
 2. Inicia sesión con tus credenciales.
 3. Crea la base de datos ejecutando: `CREATE DATABASE zoo_fantastico;`
 4. Asegúrate que tus credenciales coincidan con las de `src/main/resources/application.properties`:
-   - `spring.datasource.username=root` 
-   - `spring.datasource.password=1014736507` (o el que dispongas)
+    - `spring.datasource.username=root`
+    - `spring.datasource.password=1014736507` (o el que dispongas)
 
 ## Cómo ejecutar la aplicación
 
