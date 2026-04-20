@@ -1,4 +1,5 @@
 package com.Javeriana.zoo_fantastico.model;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,5 +17,5 @@ public class Creature {
 
     @ManyToOne
     @JoinColumn(name = "zone_id")
-    private Zone zona; // Hibernate busca este nombre exacto
+    private Zone zona;
 }
