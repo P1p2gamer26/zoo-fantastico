@@ -28,7 +28,7 @@ import java.util.Optional;
 import com.Javeriana.zoo_fantastico.domain.repository.CreatureRepository;
 
 @ExtendWith(MockitoExtension.class) // habilitamos moks
-public class CreatureServiceTest {
+public class CreatureServiceUnitaryTest {
 
     @Mock // creamos una instancia simulada del repositorio
     private CreatureRepository creatureRepository;
