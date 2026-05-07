@@ -1,0 +1,487 @@
+{
+	"id": "e11b8c40-173b-4acc-88ee-39d34d70fe0a",
+	"name": "Zoo Fantastico CRUD Tests",
+	"timestamp": "2026-05-06T17:53:00.787Z",
+	"collection_id": "46103277-40766580-4bfa-4d0b-a239-6c009a4101ec",
+	"folder_id": 0,
+	"environment_id": "46103277-03d17b1f-bc16-4ee9-9586-be6ba32cb749",
+	"totalPass": 13,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2026-05-06T17:52:59.637Z",
+	"totalFail": 2,
+	"results": [
+		{
+			"id": "0c04a367-b344-4c0d-b521-426e0a9a3501",
+			"name": "POST Create Creature",
+			"url": "http://localhost:8080/api/creatures",
+			"time": 17,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Creature created successfully": true
+			},
+			"testPassFailCounts": {
+				"Creature created successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17
+			],
+			"allTests": [
+				{
+					"Creature created successfully": true
+				}
+			]
+		},
+		{
+			"id": "d3e103d8-b879-4258-956e-dc24e300a7dd",
+			"name": "GET All Creatures",
+			"url": "http://localhost:8080/api/creatures",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Get all creatures successfully": true
+			},
+			"testPassFailCounts": {
+				"Get all creatures successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Get all creatures successfully": true
+				}
+			]
+		},
+		{
+			"id": "fb2cca5b-785d-4463-8d0c-fcba7bf4c559",
+			"name": "GET Creature by ID",
+			"url": "http://localhost:8080/api/creatures/17",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Creature retrieved successfully": true
+			},
+			"testPassFailCounts": {
+				"Creature retrieved successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Creature retrieved successfully": true
+				}
+			]
+		},
+		{
+			"id": "fbb00f2b-edab-4531-843a-bb309530b588",
+			"name": "PUT Update Creature",
+			"url": "http://localhost:8080/api/creatures/17",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Creature updated successfully": true
+			},
+			"testPassFailCounts": {
+				"Creature updated successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Creature updated successfully": true
+				}
+			]
+		},
+		{
+			"id": "b05b6906-df32-4902-bd11-8370e1e0b270",
+			"name": "DELETE Creature",
+			"url": "http://localhost:8080/api/creatures/17",
+			"time": 9,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Creature deleted successfully": true
+			},
+			"testPassFailCounts": {
+				"Creature deleted successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Creature deleted successfully": true
+				}
+			]
+		},
+		{
+			"id": "bead4b16-dee0-4aba-9a6e-5296f181d44a",
+			"name": "POST Critical Creature",
+			"url": "http://localhost:8080/api/creatures",
+			"time": 8,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Critical creature created": true
+			},
+			"testPassFailCounts": {
+				"Critical creature created": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Critical creature created": true
+				}
+			]
+		},
+		{
+			"id": "d33c2494-1157-46f3-99c5-a4fc9dd1c788",
+			"name": "DELETE Critical Creature (should fail)",
+			"url": "http://localhost:8080/api/creatures/18",
+			"time": 9,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Cannot delete critical creature": false
+			},
+			"testPassFailCounts": {
+				"Cannot delete critical creature": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Cannot delete critical creature": false
+				}
+			]
+		},
+		{
+			"id": "256db4ec-ee58-4c92-b24d-0d05f64c2a35",
+			"name": "POST Create Zone",
+			"url": "http://localhost:8080/api/zonas",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Zone created successfully": true
+			},
+			"testPassFailCounts": {
+				"Zone created successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Zone created successfully": true
+				}
+			]
+		},
+		{
+			"id": "50e4a43d-eed2-4d3e-824c-ac4fe89cd74d",
+			"name": "GET All Zones",
+			"url": "http://localhost:8080/api/zonas",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Get all zones successfully": true
+			},
+			"testPassFailCounts": {
+				"Get all zones successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Get all zones successfully": true
+				}
+			]
+		},
+		{
+			"id": "86516cce-f49b-4899-beb6-094f52dafe4c",
+			"name": "GET Zone by ID",
+			"url": "http://localhost:8080/api/zonas/22",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Zone retrieved successfully": true
+			},
+			"testPassFailCounts": {
+				"Zone retrieved successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Zone retrieved successfully": true
+				}
+			]
+		},
+		{
+			"id": "d534a82b-5463-4124-b506-051f4e81d8a4",
+			"name": "PUT Update Zone",
+			"url": "http://localhost:8080/api/zonas/22",
+			"time": 14,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Zone updated successfully": true
+			},
+			"testPassFailCounts": {
+				"Zone updated successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Zone updated successfully": true
+				}
+			]
+		},
+		{
+			"id": "59b2c26f-b347-4ad5-8de8-c3a40f139309",
+			"name": "DELETE Zone",
+			"url": "http://localhost:8080/api/zonas/22",
+			"time": 12,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Zone deleted successfully": true
+			},
+			"testPassFailCounts": {
+				"Zone deleted successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Zone deleted successfully": true
+				}
+			]
+		},
+		{
+			"id": "84f0d39a-4803-46bc-8d48-273bc7801bec",
+			"name": "POST Create Zone with Creatures (debe fallar al eliminar)",
+			"url": "http://localhost:8080/api/zonas",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Zone with creatures created": true
+			},
+			"testPassFailCounts": {
+				"Zone with creatures created": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Zone with creatures created": true
+				}
+			]
+		},
+		{
+			"id": "07ebbe74-ba7e-4d71-8a4a-a5de75246381",
+			"name": "POST Creature in Zone",
+			"url": "http://localhost:8080/api/creatures",
+			"time": 16,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Creature in zone created": true
+			},
+			"testPassFailCounts": {
+				"Creature in zone created": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Creature in zone created": true
+				}
+			]
+		},
+		{
+			"id": "4dc4b6d3-e9db-44f7-82ec-f92b21e5ac71",
+			"name": "DELETE Zone with Creatures (should fail)",
+			"url": "http://localhost:8080/api/zonas/23",
+			"time": 9,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Cannot delete zone with creatures": false
+			},
+			"testPassFailCounts": {
+				"Cannot delete zone with creatures": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Cannot delete zone with creatures": false
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 154,
+	"collection": {
+		"requests": [
+			{
+				"id": "0c04a367-b344-4c0d-b521-426e0a9a3501",
+				"method": "POST"
+			},
+			{
+				"id": "d3e103d8-b879-4258-956e-dc24e300a7dd",
+				"method": "GET"
+			},
+			{
+				"id": "fb2cca5b-785d-4463-8d0c-fcba7bf4c559",
+				"method": "GET"
+			},
+			{
+				"id": "fbb00f2b-edab-4531-843a-bb309530b588",
+				"method": "PUT"
+			},
+			{
+				"id": "b05b6906-df32-4902-bd11-8370e1e0b270",
+				"method": "DELETE"
+			},
+			{
+				"id": "bead4b16-dee0-4aba-9a6e-5296f181d44a",
+				"method": "POST"
+			},
+			{
+				"id": "d33c2494-1157-46f3-99c5-a4fc9dd1c788",
+				"method": "DELETE"
+			},
+			{
+				"id": "256db4ec-ee58-4c92-b24d-0d05f64c2a35",
+				"method": "POST"
+			},
+			{
+				"id": "50e4a43d-eed2-4d3e-824c-ac4fe89cd74d",
+				"method": "GET"
+			},
+			{
+				"id": "86516cce-f49b-4899-beb6-094f52dafe4c",
+				"method": "GET"
+			},
+			{
+				"id": "d534a82b-5463-4124-b506-051f4e81d8a4",
+				"method": "PUT"
+			},
+			{
+				"id": "59b2c26f-b347-4ad5-8de8-c3a40f139309",
+				"method": "DELETE"
+			},
+			{
+				"id": "84f0d39a-4803-46bc-8d48-273bc7801bec",
+				"method": "POST"
+			},
+			{
+				"id": "07ebbe74-ba7e-4d71-8a4a-a5de75246381",
+				"method": "POST"
+			},
+			{
+				"id": "4dc4b6d3-e9db-44f7-82ec-f92b21e5ac71",
+				"method": "DELETE"
+			}
+		]
+	}
+}
