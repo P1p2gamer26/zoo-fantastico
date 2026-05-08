@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class CreatureController {
      * @return {@code 201 Created} con la criatura persistida.
      */
     @PostMapping
-    public ResponseEntity<Creature> createCreature(@RequestBody Creature creature) {
+    public ResponseEntity<Creature> createCreature(@Valid @RequestBody Creature creature) {
         Creature newCreature = creatureService.createCreature(creature);
         return ResponseEntity.status(HttpStatus.CREATED).body(newCreature);
     }
@@ -75,7 +76,7 @@ public class CreatureController {
      */
     @PutMapping("/{id}")
     public Creature updateCreature(@PathVariable Long id,
-                                   @RequestBody Creature updatedCreature) {
+                                   @Valid @RequestBody Creature updatedCreature) {
         return creatureService.updateCreature(id, updatedCreature);
     }
 
