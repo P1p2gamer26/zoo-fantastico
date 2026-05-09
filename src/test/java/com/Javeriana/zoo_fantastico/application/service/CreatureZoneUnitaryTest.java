@@ -23,6 +23,10 @@ import org.junit.jupiter.api.BeforeEach;
 import com.Javeriana.zoo_fantastico.domain.entity.Zone;
 import java.util.Optional;
 import com.Javeriana.zoo_fantastico.domain.repository.ZoneRepository;
+import com.Javeriana.zoo_fantastico.domain.entity.Creature;
+import java.util.List;
+import java.util.ArrayList;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 public class CreatureZoneUnitaryTest {
@@ -118,5 +122,27 @@ public class CreatureZoneUnitaryTest {
 
         //ASSERT
         verify(zoneRepository, times(1)).delete(existingZone);
+    }
+
+    @Test
+    void testDeleteZone_WithCreatures_ShouldThrowException() {
+        // ARRANGE
+        Long id = 1L;
+        Zone existingZone = new Zone();
+        existingZone.setId(id);
+        
+        // Simular que la zona tiene criaturas
+        List<Creature> creatures = new ArrayList<>();
+        creatures.add(new Creature());
+        existingZone.setCriaturas(creatures);
+
+        when(zoneRepository.findById(id)).thenReturn(Optional.of(existingZone));
+
+        // ACT & ASSERT
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            zoneService.deleteZone(id);
+        });
+
+        assertEquals("No se puede eliminar la zona porque tiene criaturas asignadas.", exception.getMessage());
     }
 }
