@@ -243,4 +243,27 @@ public class CreatureControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
+    }
+
+    @Test
+    void testUpdateCreature_ShouldReturnUpdated() throws Exception {
+        Creature updatedData = new Creature();
+        updatedData.setName("Grifo Real");
+        
+        when(creatureService.updateCreature(eq(1L), any(Creature.class))).thenReturn(creature);
+        creature.setName("Grifo Real");
+
+        mockMvc.perform(put("/api/creatures/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(updatedData)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Grifo Real"));
+    }
+
+    @Test
+    void testDeleteCreature_ShouldReturnNoContent() throws Exception {
+        mockMvc.perform(delete("/api/creatures/1"))
+                .andExpect(status().isNoContent());
+    }
+>>>>>>> origin/Develop
 }
